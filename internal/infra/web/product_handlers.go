@@ -19,7 +19,7 @@ func NewProductHandlers(createProductUsecase *usecase.CreateProductUseCase, list
 	}
 }
 
-func (p *ProductHandlers) CreateProductHandler(w http.ResponseWriter, r http.Request) {
+func (p *ProductHandlers) CreateProductHandler(w http.ResponseWriter, r *http.Request) {
 	var input usecase.CreateProductInputDto
 	err := json.NewDecoder(r.Body).Decode(&input)
 
@@ -41,7 +41,7 @@ func (p *ProductHandlers) CreateProductHandler(w http.ResponseWriter, r http.Req
 
 }
 
-func (p *ProductHandlers) ListProductsHandler(w http.ResponseWriter, r http.Request) {
+func (p *ProductHandlers) ListProductsHandler(w http.ResponseWriter, r *http.Request) {
 	output, err := p.ListProductsUseCase.Execute()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
